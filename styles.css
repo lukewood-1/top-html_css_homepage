@@ -37,13 +37,19 @@
 :root {
 	--bg: #d5d5d5;
 	--primary: #cd0715;
-	--accent: #495049;
+	--accent: #344b31;
+	--slim: #454545;
 }
 
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+}
+
+body {
+	max-width: 1366px;
+	margin: 0 auto;
 }
 
 header {
@@ -54,10 +60,15 @@ header {
 	padding-block: 2rem;
 }
 
+header, main, footer {
+	border-inline: 2px solid var(--primary);
+}
+
 header div.rotated-bg {
 	background: var(--primary);
-	width: 100vw;
-	height: 80%;
+	width: 100%;
+	max-width: 1366px;
+	height: 40%;
 	position: absolute;
 	z-index: -999;
 	top: 0;
@@ -68,6 +79,10 @@ header div.img-container {
 	position: relative;
 	top: 0;
 	display: flex;
+}
+
+a, i {
+	color: var(--primary);
 }
 
 header .img-container > picture {
@@ -125,14 +140,14 @@ header > div.text-area {
 }
 
 main {
-	margin-bottom: 10rem;
+	padding-bottom: 10rem;
+	padding-inline: 2rem;
 }
 
 main .card-container {
 	display: grid;
-	grid: auto / repeat(auto-fill, minmax(300px, 1fr));
-	padding: 1.5rem;
-	gap: 5rem;
+	grid: auto / repeat(auto-fill, minmax(360px, 1fr));
+	gap: 3rem;
 	& .card {
 		box-shadow: 0 0 1rem #0005;
 		height: 30rem;
@@ -140,13 +155,15 @@ main .card-container {
 	& .card .img {
 		width: 100%;
 		height: 60%;
-		background: #555;
+		background: var(--accent);
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		& p {
-			font-size: 2.5rem;
+			font-size: 3rem;
 			color: #fff;
 			text-align: center;
+			padding: 1rem;
 		}
 	} 
 	& .card div.text-area {
@@ -162,16 +179,17 @@ main .card-container {
 		& h3 {
 			font-family: 'Koh Santepheap';
 			font-weight: 300;
-			font-size: 1.8rem;
-			text-indent: 1rem;
+			font-size: calc(1.7rem + 0.25vw);
+			text-indent: .5rem;
 		}
 		& div .icon-house {
-			font-size: 1.75rem;
-			gap: 1rem;
+			font-size: calc(1.5rem + .25vw);
+			gap: 1.2rem;
 		}
 		& p {
 			font-family: roboto;
-			  font-size: 1.2rem;
+			font-size: calc(1.2rem + .15vw);
+			color: var(--slim);
 		}
 	}
 }
@@ -180,43 +198,71 @@ footer {
 	background: var(--primary);
 	color: #fff;
 	display: flex;
-	flex-flow: row wrap;
-	gap: 4rem;
+	flex-flow: column;
+	gap: 8rem;
 
 	& .text-area {
-		padding: 1rem 1.5rem;
+		padding: 2rem;
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 		flex-flow: column;
+
+		& h2 {
+			font-size: calc(9vw + 1rem);
+		}
 		& > p {
-			font-size: 1.4rem;
+			font-size: calc(2.1rem + 1vw);
+			font-family: roboto;
 		}
 		& address {
-			font-size: 1.2rem;
+			font-family: roboto;
+			font-size: calc(1.3rem + 1vw);
+			font-style: normal;
 		}
 		& address:last-of-type {
 			margin-bottom: 2rem;
+
+			& img {
+				width: 1.2rem;
+				margin-right: 0.5rem;
+			}
+
 		}
 		& .icon-house {
 			display: flex;
 			justify-content: center;
-			font-size: 3.5rem;
-			gap: 3rem;
+			font-size: 5rem;
+			gap: 5rem;
+
+			& i {
+				color: #fff;
+			}
 		}
+
+	}
+
+	& picture, img {
+		width: 100vw;
 	}
 }
 
-@media screen and (width >= 600px) {
+@media  (width >= 768px) and (width < 1024px) {
 	header {
 		position: relative;
-		margin-bottom: 5rem;
+		padding-bottom: 10rem;
+		& div.rotated-bg {
+			height: calc(60% + 10vw);
+		}
 	}
+
 	header div.img-container {
 		left: -25%;
 		& picture {
+			position: relative;
+			left: 2rem;
 		}
 		& > p {
-			font-size: 4.1rem;
+			font-size: calc(3.5vw + 2rem);
 			align-self: start;
 			left: 80%;
 			width: max-content;
@@ -231,30 +277,243 @@ footer {
 	header div.text-area {
 		position: absolute;
 		z-index: -1;
-		top: 20%;
+		top: 25%;
 		left: 11%;
 		display: block;
 		max-width: 80%;
 		background: #fff;
 		box-shadow: 0 0 1rem #0005;
-		padding: 1rem;
+		padding: 2rem;
 		&::before {
 			content:''; 
-			width: calc(31vw + 4ch);
-			height: 55ch;
+			width: 10ch;
+			height: 10ch;
+			margin: 7ch calc(12vw + 1ch);
 			float: left;
-			margin: -3.4rem 0;
 		}
 		& h2 {
 			margin-top: 3rem;
-			font-size: 2.5rem;
+			font-size: calc(3.3vw + .9rem);
 		}
 		& p {
-			line-height: 1.2;
-			font-size: 1.2rem;
+		font-size: calc(1.3vw + .5rem);
+		line-height: 1.6;
+		letter-spacing: 0.4px;
 		}
 		& .link-container {
 			display: none;
+		}
+	}
+
+	main {
+		& h2 {
+			text-align: left;
+		}
+
+		& .card-container .card div.text-area {
+			& h3 {
+				text-indent: 0;
+			}
+		}
+	}
+
+	footer {
+		flex-flow: row;
+		padding: 3rem 1rem;
+		justify-content: space-between;
+		gap: 0;
+
+		& .text-area {
+			padding: 2rem 1.5rem 0 1.5rem;
+			gap: 1rem;
+
+			& h2 {
+				font-size: calc(2.5rem + 1vw);
+				text-align: left;
+			}
+
+			& p {
+				font-size: calc(1rem + 0.5vw);
+			}
+
+			& address {
+				font-size: calc(1rem + 0.5vw);
+			}
+
+			& address:last-of-type {
+				margin-block: 1rem;
+
+				& p:first-of-type {
+					margin-bottom: 0.5rem;
+				}
+
+				& p {
+					font-size: 1.2rem;
+					display: flex;
+					align-items: center;
+				}
+
+				& img {
+					width: 1.2rem;
+					padding: 0;
+				}
+			}
+
+			& .icon-house {
+				font-size: 2.2rem;
+				gap: 1.5rem;
+				align-self: flex-start;
+			}
+
+		}
+
+		& picture, img {
+			width: unset;
+			padding-right: 1rem;
+		}
+	}
+}
+
+@media (width < 768px) {
+	header div.text-area{
+		&::before {
+			margin: calc(1vh + 7ch) calc(11vw + 3ch);
+		} & h2 {
+			font-size: calc(3.3vw + 0.9rem);
+		} & p {
+			font-size: calc(1.3vw + .5rem);
+			line-height: 1.6;
+			letter-spacing: 0.4px;
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	header {
+		flex-flow: row;
+		padding-inline: 4rem;
+		padding-bottom: 5rem;
+
+		& div.rotated-bg {
+			height: calc(55% + 5vw);
+			max-height: 500px;
+		}
+
+		& > div.text-area{
+			background: #fff;
+			box-shadow: 0 0 1rem #0005;
+			padding-block: 1rem;
+
+			& h2 {
+				font-size: calc(3rem + .5vw);
+				align-self: start;
+				margin: 1rem 0;
+			}
+
+			& .link-container {
+				align-self: end;
+				font-size: 1.5rem;
+			}
+		}
+	}
+
+	main {
+		padding-inline: 4rem;
+
+		& h2 {
+			text-align: left;
+		}
+
+		& .card-container {
+			    grid: auto / repeat(auto-fill, minmax(280px, 1fr));
+
+			& .card {
+				height: 20rem;
+
+			}
+
+			& .card .img p {
+				font-size: 2.5rem;
+				font-family: tinos;
+			}
+
+			& .card div.text-area {
+				padding: .5rem 1rem;
+
+				& div {
+					margin-bottom: 0.5rem;
+
+					& h3 {
+						font-size: 1.2rem;
+						text-indent: 0;
+					}
+
+					& .icon-house {
+						font-size: 1.2rem;
+						gap: 1rem;
+					}
+				}
+
+				& p {
+					font-size: 0.825rem;
+				}
+			}
+		}
+
+	}
+
+	footer {
+		flex-flow: row;
+		padding: 3rem;
+		gap: 6rem;
+
+		& .text-area {
+			padding: 0 1.5rem;
+			gap: 1rem;
+
+			& h2 {
+				font-size: calc(2.5rem + 1vw);
+				text-align: left;
+			}
+
+			& p {
+				font-size: calc(1rem + 0.5vw);
+			}
+
+			& address {
+				font-size: calc(1rem + 0.5vw);
+			}
+
+			& address:last-of-type {
+				margin-block: 1rem;
+
+				& p:first-of-type {
+					margin-bottom: 0.5rem;
+				}
+
+				& p {
+					font-size: 1.2rem;
+					display: flex;
+					align-items: center;
+				}
+
+				& img {
+					width: 1.2rem;
+					padding: 0;
+				}
+			}
+
+			& .icon-house {
+				font-size: 2.2rem;
+				gap: 1.5rem;
+				align-self: flex-start;
+			}
+
+		}
+
+		& picture, img {
+			width: unset;
+			padding-right: 1rem;
 		}
 	}
 }
